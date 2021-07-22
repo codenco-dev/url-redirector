@@ -1,5 +1,5 @@
 <?php
-// config for CodencoDev/ClassName
+// config for CodencoDev/UrlRedirector
 return [
 
 ];
