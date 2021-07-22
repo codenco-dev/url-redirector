@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "codenco-dev/url-redirector",
+    "description": "This awesome package allows manage old in db",
     "keywords": [
-        ":vendor_name",
+        "codenco-dev",
         "laravel",
-        "package_slug"
+        "url-redirector"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/codenco-dev/url-redirector",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Dominique Thomas",
+            "email": "dthomas@codenco.fr",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "CodencoDev\\UrlRedirector\\": "src",
+            "CodencoDev\\UrlRedirector\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "CodencoDev\\UrlRedirector\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "CodencoDev\\UrlRedirector\\UrlRedirectorServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "UrlRedirector": "CodencoDev\\UrlRedirector\\UrlRedirectorFacade"
             }
         }
     },

@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace CodencoDev\UrlRedirector\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class UrlRedirectorCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'url-redirector';
 
     public $description = 'My command';
 
