@@ -2,9 +2,9 @@
 
 namespace CodencoDev\UrlRedirector\Tests;
 
+use CodencoDev\UrlRedirector\UrlRedirectorServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use CodencoDev\UrlRedirector\UrlRedirectorServiceProvider;
 
 class TestCase extends Orchestra
 {

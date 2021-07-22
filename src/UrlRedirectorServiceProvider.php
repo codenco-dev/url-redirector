@@ -2,9 +2,9 @@
 
 namespace CodencoDev\UrlRedirector;
 
+use CodencoDev\UrlRedirector\Commands\UrlRedirectorCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use CodencoDev\UrlRedirector\Commands\UrlRedirectorCommand;
 
 class UrlRedirectorServiceProvider extends PackageServiceProvider
 {
