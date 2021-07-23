@@ -4,5 +4,4 @@ namespace CodencoDev\UrlRedirector;
 
 class UrlRedirector
 {
-
 }
