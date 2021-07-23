@@ -1,7 +1,7 @@
 <?php
 
-
 namespace CodencoDev\UrlRedirector\Enums;
+
 use Spatie\Enum\Enum;
 
 /**
@@ -10,5 +10,4 @@ use Spatie\Enum\Enum;
  */
 class HttpStatusCodeEnum extends Enum
 {
-
 }

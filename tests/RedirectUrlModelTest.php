@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CodencoDev\UrlRedirector\Tests;
-
 
 use CodencoDev\EloquentModelTester\HasModelTester;
 use CodencoDev\UrlRedirector\Models\RedirectUrl;
@@ -14,7 +12,6 @@ class RedirectUrlModelTest extends TestCase
     use HasModelTester;
 
     /** @test */
-
     public function has_model_redirect_url_with_good_structure()
     {
         $this->assertTrue(true);

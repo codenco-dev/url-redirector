@@ -31,6 +31,5 @@ class TestCase extends Orchestra
 
         $migration = include_once __DIR__.'/../database/migrations/create_url-redirector_table.php.stub';
         (new $migration())->up();
-
     }
 }
