@@ -22,4 +22,11 @@ class UrlRedirectorServiceProvider extends PackageServiceProvider
             ->hasMigration('create_url-redirector_table')
             ->hasCommand(UrlRedirectorCommand::class);
     }
+
+    public function packageRegistered()
+    {
+        $this->app->bind('url-redirector', function($app) {
+            return new UrlRedirector();
+        });
+    }
 }

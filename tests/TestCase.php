@@ -15,6 +15,11 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'CodencoDev\\UrlRedirector\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'Tests\\Factories\\'.class_basename($modelName).'Factory'
+        );
+
+
     }
 
     protected function getPackageProviders($app)
@@ -29,8 +34,13 @@ class TestCase extends Orchestra
         config()->set('database.default', 'testing');
 
 
-        $migration = include_once __DIR__.'/../database/migrations/create_url-redirector_table.php.stub';
-        (new $migration())->up();
+        include_once __DIR__.'/../database/migrations/create_url-redirector_table.php.stub';
+        (new \CreateRedirectUrlTable())->up();
+
+        include_once __DIR__.'/migrations/create_posts_table.php.stub';
+        (new \CreatePostTable())->up();
+
+
 
     }
 }
