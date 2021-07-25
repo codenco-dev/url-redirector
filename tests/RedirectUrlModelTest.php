@@ -1,8 +1,6 @@
 <?php
 
-
 namespace CodencoDev\UrlRedirector\Tests;
-
 
 use CodencoDev\EloquentModelTester\HasModelTester;
 use CodencoDev\UrlRedirector\Enums\RedirectUrlTypeEnum;
@@ -16,7 +14,6 @@ class RedirectUrlModelTest extends TestCase
     use HasModelTester;
 
     /** @test */
-
     public function has_model_redirect_url_with_good_structure()
     {
         $this->assertTrue(true);
@@ -28,33 +25,30 @@ class RedirectUrlModelTest extends TestCase
     }
 
     /** @test */
-
-    function it_can_store_with_url()
+    public function it_can_store_with_url()
     {
         $origin = 'origin';
         $destination = 'destination';
-        $code='301';
-        RedirectUrl::add($origin,$destination,$code);
+        $code = '301';
+        RedirectUrl::add($origin, $destination, $code);
 
-        $this->assertDatabaseHas('redirect_urls',[
+        $this->assertDatabaseHas('redirect_urls', [
             'origin_url' => $origin,
             'type' => RedirectUrlTypeEnum::url(),
         ]);
     }
 
     /** @test */
-
-    function it_can_store_with_model()
+    public function it_can_store_with_model()
     {
         $origin = 'origin';
         $destination = 'destination';
-        $code='301';
-        $redirectUrl = RedirectUrl::add($origin,Post::create(),$code);
+        $code = '301';
+        $redirectUrl = RedirectUrl::add($origin, Post::create(), $code);
 
-        $this->assertDatabaseHas('redirect_urls',[
+        $this->assertDatabaseHas('redirect_urls', [
             'origin_url' => $origin,
             'type' => RedirectUrlTypeEnum::model(),
         ]);
     }
-
 }

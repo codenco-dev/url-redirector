@@ -25,7 +25,7 @@ class UrlRedirectorServiceProvider extends PackageServiceProvider
 
     public function packageRegistered()
     {
-        $this->app->bind('url-redirector', function($app) {
+        $this->app->bind('url-redirector', function ($app) {
             return new UrlRedirector();
         });
     }

@@ -18,8 +18,6 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Tests\\Factories\\'.class_basename($modelName).'Factory'
         );
-
-
     }
 
     protected function getPackageProviders($app)
@@ -39,8 +37,5 @@ class TestCase extends Orchestra
 
         include_once __DIR__.'/migrations/create_posts_table.php.stub';
         (new \CreatePostTable())->up();
-
-
-
     }
 }
