@@ -3,7 +3,6 @@
 namespace CodencoDev\UrlRedirector;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Facade;
 
 /**
