@@ -2,6 +2,7 @@
 
 namespace CodencoDev\UrlRedirector;
 
+use CodencoDev\UrlRedirector\Enums\RedirectUrlTypeEnum;
 use CodencoDev\UrlRedirector\Models\RedirectUrl;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,7 @@ class UrlRedirector
 
     public function get($origin)
     {
-        $this->redirectUrl = RedirectUrl::where('origin_url', $origin)->first();
+            $this->redirectUrl = RedirectUrl::where('origin_url', $origin)->first();
 
         return $this;
     }
@@ -33,5 +34,20 @@ class UrlRedirector
     public function getCode()
     {
         return $this->redirectUrl->http_code;
+    }
+
+    public function getRedirectionUrl(string $url):array
+    {
+        if($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::url()
+        && $this->get($url)->redirectUrl?->destination_url){
+            return [$url => $this->get($url)->redirectUrl?->destination_url];
+        }
+
+        if($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::model()
+            && $this->get($url)->redirectUrl?->redirectable?->getCurrentShowUrl()){
+            return [$url => $this->get($url)->redirectUrl?->redirectable?->getCurrentShowUrl()];
+        }
+
+        return [];
     }
 }

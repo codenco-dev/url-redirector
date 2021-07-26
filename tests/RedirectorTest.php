@@ -53,7 +53,7 @@ class RedirectorTest extends TestCase
         $this->assertFalse(UrlRedirectorFacade::has('test2'));
     }
 
-    /** @tes */
+    /** @test */
     public function can_retrieve_good_url_for_a_model()
     {
         $old_url = 'test_url';
@@ -62,17 +62,18 @@ class RedirectorTest extends TestCase
 
         UrlRedirectorFacade::save($old_url, $p);
 
-        $model = UrlRedirectorFacade::getDestination($old_url);
+        $model = (UrlRedirectorFacade::get($old_url))->redirectUrl->redirectable;
 
         $this->assertTrue(UrlRedirectorFacade::has($old_url));
 
 
-        $this->assertSame($p, $model);
-        $this->assertInstanceOf(Model::class, $model::class);
-        $this->assertInstanceOf($p::class, $model::class);
+        $this->assertEquals($p->getAttributes(), $model->getAttributes());
+
+        $this->assertInstanceOf($p::class, $model);
         $this->assertEquals($p->id, $model->id);
     }
 
+    /** @test */
     public function can_retrieve_good_url_for_another()
     {
         $old_url = 'old_url';
@@ -81,11 +82,33 @@ class RedirectorTest extends TestCase
 
         UrlRedirectorFacade::save($old_url, $new_url);
 
-        $url = UrlRedirectorFacade::getDestination($old_url);
+        $url = (UrlRedirectorFacade::get($old_url))->redirectUrl->destination_url;
 
         $this->assertTrue(UrlRedirectorFacade::has($old_url));
 
-        $this->assertSame($new_url, $url);
+        $this->assertEquals($new_url, $url);
         $this->assertIsString($url);
     }
+
+    /** @test */
+    public function it_can_have_string_url()
+    {
+        UrlRedirectorFacade::save('origin_url', 'destination_url');
+        $this->assertEquals([
+            'origin_url' => 'destination_url'
+        ],UrlRedirectorFacade::getRedirectionUrl('origin_url'));
+    }
+
+    /** @test */
+    public function it_can_have_model_url()
+    {
+        $p = WithSlugPost::create(['name' => 'test']);
+        UrlRedirectorFacade::save('origin_url', $p);
+
+        $this->assertEquals([
+            'origin_url' => 'http://localhost/with-slug-posts/test'
+        ],UrlRedirectorFacade::getRedirectionUrl('origin_url'));
+    }
+
+
 }
