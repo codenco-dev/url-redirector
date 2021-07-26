@@ -21,8 +21,6 @@ class TestCase extends Orchestra
 
         \Route::get('posts/{post}')->name('posts.show');
         \Route::get('with-slug-posts/{with_slug_post}')->name('with-slug-posts.show');
-
-
     }
 
     protected function getPackageProviders($app)
@@ -42,8 +40,5 @@ class TestCase extends Orchestra
 
         include_once __DIR__.'/migrations/create_posts_table.php.stub';
         (new \CreatePostTable())->up();
-
-
-
     }
 }
