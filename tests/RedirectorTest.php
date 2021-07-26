@@ -7,7 +7,7 @@ namespace CodencoDev\UrlRedirector\Tests;
 
 use CodencoDev\UrlRedirector\Enums\RedirectUrlTypeEnum;
 use CodencoDev\UrlRedirector\Models\RedirectUrl;
-use CodencoDev\UrlRedirector\Tests\Models\Post;
+use CodencoDev\UrlRedirector\Tests\Models\WithSlugPost;
 use CodencoDev\UrlRedirector\Tests\Factories\PostFactory;
 use CodencoDev\UrlRedirector\UrlRedirectorFacade;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +19,7 @@ class RedirectorTest extends TestCase
     function it_can_record_url_for_model()
     {
         $origin = 'origin';
-        $destination = Post::create();;
+        $destination = WithSlugPost::create();;
         UrlRedirectorFacade::save($origin,$destination);
 
         $this->assertTrue(UrlRedirectorFacade::has($origin));
@@ -46,7 +46,7 @@ class RedirectorTest extends TestCase
         $code = '302';
         UrlRedirectorFacade::save($origin,$destination,$code);
         $this->assertTrue(UrlRedirectorFacade::has($origin));
-        $this->assertEquals((UrlRedirectorFacade::get($origin))->code(),$code);
+        $this->assertEquals((UrlRedirectorFacade::get($origin))->getCode(),$code);
 
     }
 
@@ -63,7 +63,7 @@ class RedirectorTest extends TestCase
     function it_cannot_retrieve_unrecorded_url()
     {
         UrlRedirectorFacade::save('test1','destination');
-        $this->assertTrue(UrlRedirectorFacade::save('test2'));
+        $this->assertFalse(UrlRedirectorFacade::has('test2'));
     }
 
     /** @tes */
@@ -73,7 +73,7 @@ class RedirectorTest extends TestCase
 
         $old_url = 'test_url';
 
-        $p = Post::create(['name' => 'test']);
+        $p = WithSlugPost::create(['name' => 'test']);
 
         UrlRedirectorFacade::save($old_url,$p);
 

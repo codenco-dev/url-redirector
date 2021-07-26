@@ -8,26 +8,31 @@ use Illuminate\Database\Eloquent\Model;
 class UrlRedirector
 {
 
-    public function __construct(public string $origin,public string $code, Model|string $destination)
+    public function __construct(public ?RedirectUrl $redirectUrl = null)
     {
     }
 
 
-    public function save(string $origin_url,Model|string $destination, ?string $code=null)
+    public function save(string $origin_url, Model|string $destination, ?string $code = null): bool
     {
-        RedirectUrl::add($origin_url,$destination,$code);
+        $this->redirectUrl = RedirectUrl::add($origin_url, $destination, $code);
+        return ($this->redirectUrl?->exists);
     }
 
     public function get($origin)
     {
-        $redirect = RedirectUrl::where('origin',$origin)->get();
-        $this->origin = $redirect->origin_url;
-//        if($redirect->type == destination
-        $this->destination = $redirect->origin_url;
+        $this->redirectUrl = RedirectUrl::where('origin_url', $origin)->first();
+        return $this;
+
     }
 
-    public function has(string $url):bool
+    public function has(string $url): bool
     {
-        return RedirectUrl::where('origin_url',$url)->exists();
+        return RedirectUrl::where('origin_url', $url)->exists();
+    }
+
+    public function getCode()
+    {
+        return $this->redirectUrl->http_code;
     }
 }

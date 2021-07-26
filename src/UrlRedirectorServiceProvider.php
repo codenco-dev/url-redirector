@@ -18,8 +18,9 @@ class UrlRedirectorServiceProvider extends PackageServiceProvider
         $package
             ->name('url-redirector')
             ->hasConfigFile()
+
             ->hasViews()
-            ->hasMigration('create_url-redirector_table')
+            ->hasMigration('create_url_redirector_table')
             ->hasCommand(UrlRedirectorCommand::class);
     }
 

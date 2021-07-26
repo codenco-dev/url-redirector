@@ -22,7 +22,9 @@ class RedirectUrl extends Model
                 'type' => RedirectUrlTypeEnum::model(),
             ]);
 
-            $redirectUrl->redirectable()->save($destination);
+            $redirectUrl->redirectable()
+                ->associate($destination)
+                ->save();
         }elseif(is_string($destination)){
                 $redirectUrl = self::create([
                     'origin_url' => $origin,
@@ -31,6 +33,7 @@ class RedirectUrl extends Model
                     'destination_url' => $destination,
                 ]);
         }
+
 
         return $redirectUrl;
     }

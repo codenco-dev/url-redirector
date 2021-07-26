@@ -7,7 +7,7 @@ namespace CodencoDev\UrlRedirector\Tests;
 use CodencoDev\EloquentModelTester\HasModelTester;
 use CodencoDev\UrlRedirector\Enums\RedirectUrlTypeEnum;
 use CodencoDev\UrlRedirector\Models\RedirectUrl;
-use CodencoDev\UrlRedirector\Tests\Models\Post;
+use CodencoDev\UrlRedirector\Tests\Models\WithSlugPost;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RedirectUrlModelTest extends TestCase
@@ -49,7 +49,7 @@ class RedirectUrlModelTest extends TestCase
         $origin = 'origin';
         $destination = 'destination';
         $code='301';
-        $redirectUrl = RedirectUrl::add($origin,Post::create(),$code);
+        $redirectUrl = RedirectUrl::add($origin,WithSlugPost::create(),$code);
 
         $this->assertDatabaseHas('redirect_urls',[
             'origin_url' => $origin,
