@@ -21,7 +21,7 @@ class UrlRedirector
 
     public function get($origin)
     {
-            $this->redirectUrl = RedirectUrl::where('origin_url', $origin)->first();
+        $this->redirectUrl = RedirectUrl::where('origin_url', $origin)->first();
 
         return $this;
     }
@@ -36,15 +36,15 @@ class UrlRedirector
         return $this->redirectUrl->http_code;
     }
 
-    public function getRedirectionUrl(string $url):array
+    public function getRedirectionUrl(string $url): array
     {
-        if($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::url()
-        && $this->get($url)->redirectUrl?->destination_url){
+        if ($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::url()
+        && $this->get($url)->redirectUrl?->destination_url) {
             return [$url => $this->get($url)->redirectUrl?->destination_url];
         }
 
-        if($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::model()
-            && $this->get($url)->redirectUrl?->redirectable?->getCurrentShowUrl()){
+        if ($this->get($url)->redirectUrl?->type == RedirectUrlTypeEnum::model()
+            && $this->get($url)->redirectUrl?->redirectable?->getCurrentShowUrl()) {
             return [$url => $this->get($url)->redirectUrl?->redirectable?->getCurrentShowUrl()];
         }
 

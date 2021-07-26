@@ -4,7 +4,6 @@ namespace CodencoDev\UrlRedirector\Tests;
 
 use CodencoDev\UrlRedirector\Tests\Models\WithSlugPost;
 use CodencoDev\UrlRedirector\UrlRedirectorFacade;
-use Illuminate\Database\Eloquent\Model;
 
 class RedirectorTest extends TestCase
 {
@@ -95,8 +94,8 @@ class RedirectorTest extends TestCase
     {
         UrlRedirectorFacade::save('origin_url', 'destination_url');
         $this->assertEquals([
-            'origin_url' => 'destination_url'
-        ],UrlRedirectorFacade::getRedirectionUrl('origin_url'));
+            'origin_url' => 'destination_url',
+        ], UrlRedirectorFacade::getRedirectionUrl('origin_url'));
     }
 
     /** @test */
@@ -106,9 +105,7 @@ class RedirectorTest extends TestCase
         UrlRedirectorFacade::save('origin_url', $p);
 
         $this->assertEquals([
-            'origin_url' => 'http://localhost/with-slug-posts/test'
-        ],UrlRedirectorFacade::getRedirectionUrl('origin_url'));
+            'origin_url' => 'http://localhost/with-slug-posts/test',
+        ], UrlRedirectorFacade::getRedirectionUrl('origin_url'));
     }
-
-
 }
