@@ -56,7 +56,7 @@ class RedirectUrlModelTest extends TestCase
     /** @test */
     public function it_cannot_have_two_same_origin_url_with_url_destination()
     {
-        $this->assertCount(0,RedirectUrl::all());
+        $this->assertCount(0, RedirectUrl::all());
         $origin = 'origin';
         $destination = 'destination';
         $destination2 = 'destination23';
@@ -67,19 +67,19 @@ class RedirectUrlModelTest extends TestCase
         $this->assertDatabaseHas('redirect_urls', [
             'origin_url' => $origin,
             'type' => RedirectUrlTypeEnum::url(),
-            'destination_url' => $destination2
+            'destination_url' => $destination2,
         ]);
         $this->assertDatabaseMissing('redirect_urls', [
             'origin_url' => $origin,
             'type' => RedirectUrlTypeEnum::url(),
-            'destination_url' => $destination
+            'destination_url' => $destination,
         ]);
     }
 
     /** @test */
     public function it_cannot_have_two_same_origin_url_with_model_destination()
     {
-        $this->assertCount(0,RedirectUrl::all());
+        $this->assertCount(0, RedirectUrl::all());
         $origin = 'origin';
         $destination = 'destination';
         $destination2 = 'destination23';

@@ -15,10 +15,10 @@ class UrlRedirector
     public function save(string $origin_url, Model | string $destination, ?int $code = null): bool
     {
         $origin_url = $this->pathUrl($origin_url);
-        if(is_string($destination)){
+        if (is_string($destination)) {
             $destination = $this->pathUrl($destination);
         }
-        $this->redirectUrl = RedirectUrl::add($origin_url,$destination, $code);
+        $this->redirectUrl = RedirectUrl::add($origin_url, $destination, $code);
 
         return ($this->redirectUrl?->exists);
     }
@@ -31,7 +31,7 @@ class UrlRedirector
         return $this;
     }
 
-    public function pathUrl($url):string
+    public function pathUrl($url): string
     {
         return parse_url($url)['path'] ?? '/';
     }
@@ -39,6 +39,7 @@ class UrlRedirector
     public function has(string $url): bool
     {
         $url = $this->pathUrl($url);
+
         return RedirectUrl::where('origin_url', $this->pathUrl($url))->exists();
     }
 

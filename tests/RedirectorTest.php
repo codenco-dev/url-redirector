@@ -4,7 +4,6 @@ namespace CodencoDev\UrlRedirector\Tests;
 
 use CodencoDev\UrlRedirector\Tests\Models\WithSlugPost;
 use CodencoDev\UrlRedirector\UrlRedirectorFacade;
-use Illuminate\Support\Str;
 
 class RedirectorTest extends TestCase
 {
@@ -93,9 +92,9 @@ class RedirectorTest extends TestCase
     /** @test */
     public function it_can_have_string_url()
     {
-        UrlRedirectorFacade::save('origin_url', 'destination_url','405');
+        UrlRedirectorFacade::save('origin_url', 'destination_url', '405');
         $this->assertEquals([
-            'origin_url' => ['destination_url','405']
+            'origin_url' => ['destination_url','405'],
         ], UrlRedirectorFacade::getRedirectionUrl('origin_url'));
     }
 
@@ -103,7 +102,7 @@ class RedirectorTest extends TestCase
     public function it_can_have_model_url()
     {
         $p = WithSlugPost::create(['name' => 'test']);
-        UrlRedirectorFacade::save('origin_url', $p,'405');
+        UrlRedirectorFacade::save('origin_url', $p, '405');
 
         $this->assertEquals([
             'origin_url' => ['http://localhost/with-slug-posts/test','405'],
@@ -111,8 +110,7 @@ class RedirectorTest extends TestCase
     }
 
     /** @test */
-
-    function domain_are_not_save()
+    public function domain_are_not_save()
     {
         $old_url = 'http://test.com/folder/page_old.htm';
         $new_url = 'http://test.com/folder/page_new.htm';
@@ -130,38 +128,34 @@ class RedirectorTest extends TestCase
     }
 
     /** @test */
-
-    function it_can_delete_domain_on_http_url()
+    public function it_can_delete_domain_on_http_url()
     {
         $url = 'http://test.com/folder/url1.htm';
 
-        $this->assertEquals('/folder/url1.htm',UrlRedirectorFacade::pathUrl($url));
+        $this->assertEquals('/folder/url1.htm', UrlRedirectorFacade::pathUrl($url));
     }
 
     /** @test */
-
-    function it_can_delete_domain_on_https_url()
+    public function it_can_delete_domain_on_https_url()
     {
         $url = 'https://test.com/folder/page';
 
-        $this->assertEquals('/folder/page',UrlRedirectorFacade::pathUrl($url));
+        $this->assertEquals('/folder/page', UrlRedirectorFacade::pathUrl($url));
     }
 
     /** @test */
-
-    function it_can_delete_domain_on_without_domain_url()
+    public function it_can_delete_domain_on_without_domain_url()
     {
         $url = '/folder/page';
 
-        $this->assertEquals($url,UrlRedirectorFacade::pathUrl($url));
+        $this->assertEquals($url, UrlRedirectorFacade::pathUrl($url));
     }
 
     /** @test */
-
-    function it_can_delete_domain_on_without_path_url()
+    public function it_can_delete_domain_on_without_path_url()
     {
         $url = 'https://test.com';
 
-        $this->assertEquals('/',UrlRedirectorFacade::pathUrl($url));
+        $this->assertEquals('/', UrlRedirectorFacade::pathUrl($url));
     }
 }

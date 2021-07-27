@@ -10,7 +10,7 @@ class RedirectUrl extends Model
 {
     protected $guarded = [];
 
-    public static function add(string $origin, Model|string $destination, ?int $code = 301): self
+    public static function add(string $origin, Model | string $destination, ?int $code = 301): self
     {
         $code = $code ?? '301';
         if ($destination instanceof Model) {
