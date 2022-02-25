@@ -17,7 +17,7 @@
   ],
   "require": {
     "php": "^8.0",
-    "illuminate/contracts": "^8.37",
+    "illuminate/contracts": "^8.37|^9.0",
     "spatie/enum": "^3.9",
     "spatie/laravel-package-tools": "^1.4.3"
   },
@@ -60,11 +60,5 @@
     }
   },
   "minimum-stability": "dev",
-  "prefer-stable": true,
-  "repositories": [
-    {
-      "type": "path",
-      "url": "../../packages/url-redirector"
-    }
-  ]
+  "prefer-stable": true
 }
