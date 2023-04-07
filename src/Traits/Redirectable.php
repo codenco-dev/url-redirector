@@ -13,8 +13,8 @@ trait Redirectable
     public static function bootRedirectable()
     {
         static::updating(function (Model $model) {
-//            if($model->exists)
-//            dd($model,$model->getDirty(),$model->getCurrentShowUrl());
+            //            if($model->exists)
+            //            dd($model,$model->getDirty(),$model->getCurrentShowUrl());
             if (collect($model->getDirty())
                     ->has($model
                         ->getRouteKeyName())) {
